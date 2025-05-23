@@ -58,15 +58,15 @@ class Cora_Dataset(Dataset):
         self.prefix_1='Perform Link Prediction for the node: Node represents academic paper with a specific topic, link represents a citation between the two papers. Pay attention to the multi-hop link relationship between the nodes. '
         
         self.prefix_2='Classify the article according to its topic into one of the following categories:[theory, reinforcement learning, genetic algorithms, neural networks, probabilistic methods, case based, rule learning]. Node represents academic paper with a specific topic, link represents a citation between the two papers. Pay attention to the multi-hop link relationship between the nodes. '
-        self.label_map=load_pickle(os.path.join('Cora','final_cora_label_map.pkl'))  #1
-        self.re_id=load_pickle(os.path.join('Cora','Llama_final_cora_re_id.pkl'))  #2  
-        self.llama_embed=load_pickle(os.path.join('Cora','Llama_embeds.pkl'))  #3, the word embeddings of Llama-v1-7b
+        self.label_map=load_pickle(os.path.join(args.data_path, 'Cora','final_cora_label_map.pkl'))  #1
+        self.re_id=load_pickle(os.path.join(args.data_path, 'Cora','Llama_final_cora_re_id.pkl'))  #2  
+        self.llama_embed=load_pickle(os.path.join(args.data_path, 'Cora','Llama_embeds.pkl'))  #3, the word embeddings of Llama-v1-7b
         self.l_max=self.args.max_text_length
-        self.real_feature=load_pickle(os.path.join('Cora','Llama_final_cora_real_feature.pkl')) #4
-        self.train_L1=load_pickle(os.path.join('Cora','final_cora_L1.pkl'))  #5
-        self.transductive=load_pickle(os.path.join('Cora','final_cora_transductive.pkl'))  #6 a list
-        self.classification=load_pickle(os.path.join('Cora','final_cora_classification.pkl'))  #7
-        self.node_feature=load_pickle(os.path.join('Cora','full_final_cora_node_feature.pkl'))  #8
+        self.real_feature=load_pickle(os.path.join(args.data_path, 'Cora','Llama_final_cora_real_feature.pkl')) #4
+        self.train_L1=load_pickle(os.path.join(args.data_path, 'Cora','final_cora_L1.pkl'))  #5
+        self.transductive=load_pickle(os.path.join(args.data_path, 'Cora','final_cora_transductive.pkl'))  #6 a list
+        self.classification=load_pickle(os.path.join(args.data_path, 'Cora','final_cora_classification.pkl'))  #7
+        self.node_feature=load_pickle(os.path.join(args.data_path, 'Cora','full_final_cora_node_feature.pkl'))  #8
 
         LA=[]
         LAA=list(set(self.label_map.values()))

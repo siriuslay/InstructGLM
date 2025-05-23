@@ -60,17 +60,17 @@ class PubMed_Dataset(Dataset):
         self.prefix_1='Perform Link Prediction for the node: Node represents academic paper with a specific topic, link represents a citation between the two papers. Pay attention to the multi-hop link relationship between the nodes. '
         
         self.prefix_2='Classify the article according to its topic into one of the following categories:[experimental, second, first]. Node represents academic paper with a specific topic, link represents a citation between the two papers. Pay attention to the multi-hop link relationship between the nodes. '
-        self.label_map=load_pickle(os.path.join('PubMed','final_pub_label_map.pkl'))  #1
-        self.re_id=load_pickle(os.path.join('PubMed','final_pub_re_id.pkl'))  #2
+        self.label_map=load_pickle(os.path.join(args.data_path, 'PubMed','final_pub_label_map.pkl'))  #1
+        self.re_id=load_pickle(os.path.join(args.data_path, 'PubMed','final_pub_re_id.pkl'))  #2
         self.l_max=self.args.max_text_length
-        self.real_feature=load_pickle(os.path.join('PubMed','final_norm_pub_real_feature.pkl')) #3
-        self.train_L1=load_pickle(os.path.join('PubMed','final_pub_L1.pkl'))  #4
+        self.real_feature=load_pickle(os.path.join(args.data_path, 'PubMed','final_norm_pub_real_feature.pkl')) #3
+        self.train_L1=load_pickle(os.path.join(args.data_path, 'PubMed','final_pub_L1.pkl'))  #4
 
-        self.transductive=load_pickle(os.path.join('PubMed','final_pub_transductive.pkl'))  #5 a list
-        #self.transductive=load_pickle(os.path.join('PubMed','small_pub_transductive.pkl'))  #5 a list
-        self.classification=load_pickle(os.path.join('PubMed','final_pub_classification.pkl'))  #6
-        #self.classification=load_pickle(os.path.join('PubMed','small_pub_classification.pkl'))  #6
-        self.node_feature=load_pickle(os.path.join('PubMed','final_pubmed_node_feature.pkl'))  #7
+        self.transductive=load_pickle(os.path.join(args.data_path, 'PubMed','final_pub_transductive.pkl'))  #5 a list
+        #self.transductive=load_pickle(os.path.join(args.data_path, 'PubMed','small_pub_transductive.pkl'))  #5 a list
+        self.classification=load_pickle(os.path.join(args.data_path, 'PubMed','final_pub_classification.pkl'))  #6
+        #self.classification=load_pickle(os.path.join(args.data_path, 'PubMed','small_pub_classification.pkl'))  #6
+        self.node_feature=load_pickle(os.path.join(args.data_path, 'PubMed','final_pubmed_node_feature.pkl'))  #7
 
         LA=[]
         LAA=list(set(self.label_map.values()))

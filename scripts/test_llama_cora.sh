@@ -1,10 +1,11 @@
 #!/bin/bash
 
-export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+# export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export CUDA_VISIBLE_DEVICES=0,1
 
 name=cora-7b
 
-output=snap/$name
+output=HDDDATA/wyd/$name
 
 PYTHONPATH=$PYTHONPATH:./llama_cora_src \
 python -m torch.distributed.launch \
@@ -22,7 +23,8 @@ python -m torch.distributed.launch \
         --num_workers 8 \
         --clip_grad_norm 1.0 \
         --losses 'classification' \
-        --backbone './7B' \
+        --backbone '/HDDDATA/wyd/7B' \
+        --data_path '/HDDDATA/wyd' \
         --output $output ${@:2} \
         --epoch 2 \
 	--inference \
