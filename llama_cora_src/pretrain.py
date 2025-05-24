@@ -339,6 +339,9 @@ class Trainer(TrainerBase):
             
                 if global_step==len(self.train_loader)//8:
                     torch.cuda.empty_cache()
+                    print("#############################")
+                    print(self.verbose)
+                    print("#############################")
                     if self.verbose:
                         for ig in range(32):
                             save_pickle(self.model.module.base_model.model.model.layers[ig].self_attn.q_proj.lora_A.default.weight.data,"./llama_{}_mmid1/Cora_qa_{}_{}_{}.pkl".format(epoch+1,ig,self.args.lr,self.args.gradient_accumulation_steps))
@@ -732,6 +735,9 @@ def main_worker(gpu, args):     # the gpu is the local_rank in DDP
 if __name__ == "__main__":
     cudnn.benchmark = True
     args = parse_args()
+    # print("##############")
+    # print(args.local_rank)
+    # print("##############")
     if args.local_rank in [0, -1]:
         print(args)
 

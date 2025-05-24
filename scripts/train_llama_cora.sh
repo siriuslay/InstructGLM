@@ -1,10 +1,10 @@
 #!/bin/bash
 
-export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-
+# export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export CUDA_VISIBLE_DEVICES=2,3
 name=cora-7b
 
-output=snap/$name
+output=HDDDATA/wyd/$name
 
 PYTHONPATH=$PYTHONPATH:./llama_cora_src \
 python -m torch.distributed.launch \
@@ -16,13 +16,14 @@ python -m torch.distributed.launch \
 	--gradient_accumulation_steps 8 \
         --train Cora \
         --valid Cora \
-        --batch_size 4 \
+        --batch_size 8 \
         --optim adamw \
         --warmup_ratio 0.05 \
         --num_workers 8 \
         --clip_grad_norm 1.0 \
         --losses 'link,classification' \
-        --backbone './7B' \
+        --backbone '/HDDDATA/wyd/7B' \
+        --data_path '/HDDDATA/wyd' \
         --output $output ${@:2} \
         --epoch 2 \
 	--weight_decay 0 \

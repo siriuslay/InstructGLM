@@ -127,7 +127,7 @@ def parse_args(parse=True, **optional_kwargs):
     args = Config(**kwargs)
 
     # Bind optimizer class.
-    verbose = False
+    verbose = True
     args.optimizer = get_optimizer(args.optim, verbose=verbose)
 
     # Set seeds

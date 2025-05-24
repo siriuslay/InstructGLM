@@ -135,7 +135,9 @@ class TrainerBase(object):
         return optim, lr_scheduler
 
     def load_checkpoint(self, ckpt_path):
+        print(ckpt_path)
         state_dict = load_state_dict(ckpt_path, 'cpu')
+        
         results = self.first_model.load_state_dict(state_dict, strict=True)   
         if self.verbose:
             print('Model loaded from ', ckpt_path)
